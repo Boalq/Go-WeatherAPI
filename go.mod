@@ -1,0 +1,3 @@
+module WeatherAPI
+
+go 1.27.1

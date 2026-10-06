@@ -1,2 +1,5 @@
 # Environment variables -> Now I truly understand the memes!
 .env
+
+# Redis Dump
+dump.rdb

@@ -7,7 +7,7 @@ import (
 	"golang.org/x/time/rate"
 )
 
-func RateLimiterMiddleWare(next http.Handler) http.Handler{
+func RateLimiterMiddleWare(next http.HandlerFunc) http.HandlerFunc{
 
 	limiter := rate.NewLimiter(10, 20)
 

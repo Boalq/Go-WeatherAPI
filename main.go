@@ -23,30 +23,26 @@ func init() {
 	}
 }
 
+var middleware = []func(http.HandlerFunc) http.HandlerFunc{
+	functions.RateLimiterMiddleWare,
+}
+
 func main() {
 	// What to learn v2:
 
-	// How to implement Redis here.
 	// More Deep Dive in http package
 	// Understand more what http and http request are
 
 	defer models.Rdb.Close()
 
-	city := "Berlin"
+	handler := functions.Gettingthatweather
 
-	handler := functions.Gettingthatweather(city)
-	limitedHandler := functions.RateLimiterMiddleWare(handler)
+	for _, m := range middleware {
+		handler = m(handler)
+	}
 
-	http.Handle("/weather", limitedHandler)
+	http.HandleFunc("/weather", handler)
 
 	port := fmt.Sprintf(":%v", os.Getenv("PORT"))
 	http.ListenAndServe(port, nil)
-}
-
-func headers(w http.ResponseWriter, req *http.Request) {
-	for name, headers := range req.Header {
-		for _, h := range headers {
-			fmt.Fprintf(w, "%v: %v\n", name, h)
-		}
-	}
 }

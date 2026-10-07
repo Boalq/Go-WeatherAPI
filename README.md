@@ -1,4 +1,4 @@
-## Go Weather API Wrapper for Openweather.com
+# Go Weather API Wrapper for Openweather.com
 
 ## prerequisites:
 - installed `go`
@@ -13,3 +13,6 @@
 - curl -s curl "http://localhost:YOURPORT/weather"
 
 Voila! You have a giga hardcoded Weather API Wrapper... (xd)
+
+Project Scope & Idea:
+https://roadmap.sh/projects/weather-api-wrapper-service
